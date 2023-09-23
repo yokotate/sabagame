@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerLifeManager : MonoBehaviour
 {
     [SerializeField] private int life = 1;
-    [Tooltip("True‚É‚·‚é‚ÆŽ€‚È‚È‚­‚È‚è‚Ü‚·")][SerializeField] private bool noDeathMode = false;
+    [Tooltip("True is not Death")][SerializeField] private bool noDeathMode = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,10 +14,8 @@ public class PlayerLifeManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("TriggerEnter!!!!");
-        if (!noDeathMode && collision.CompareTag("Enemy"))
+        if (!noDeathMode && (collision.CompareTag("Enemy") || collision.CompareTag("Graund")))
         {
-            Debug.Log("......Enemy");
             life -= 1;
             if (life <= 0)
             {

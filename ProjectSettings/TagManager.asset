@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Esa
+  - Graund
   layers:
   - Default
   - TransparentFX

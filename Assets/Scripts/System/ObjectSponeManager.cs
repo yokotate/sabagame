@@ -15,12 +15,15 @@ public class ObjectSponeManager : MonoBehaviour
     [SerializeField] private GameObject sponeEnemyObject;
     [SerializeField] private bool sponeEnemyFlag = true;
     [SerializeField] private float sponeTimeEnemy;
-    [SerializeField] private float sponeCurrentTimeEnemy;
+    private float sponeCurrentTimeEnemy;
+    [SerializeField] private float sponeTimeLevelRate = 0.02f;
 
     private void Start()
     {
         sponePointTran = sponePointObject.transform;
         sponePointX = sponePointTran.position.x;
+
+        sponeCurrentTimeEnemy = sponeTimeEnemy;
     }
 
     private void Update()
@@ -28,7 +31,7 @@ public class ObjectSponeManager : MonoBehaviour
         if (sponeEnemyFlag)
         {
             sponeCurrentTimeEnemy += Time.deltaTime;
-            if(sponeCurrentTimeEnemy > sponeTimeEnemy)
+            if(sponeCurrentTimeEnemy > sponeTimeEnemy - (sponeTimeLevelRate * LevelManager.instance.GetLevel()))
             {
                 sponeCurrentTimeEnemy = 0;
                 SponeObject(sponeEnemyObject);
